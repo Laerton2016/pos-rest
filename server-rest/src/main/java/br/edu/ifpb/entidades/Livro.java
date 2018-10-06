@@ -3,31 +3,57 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifpb.server.rest.entidades;
+package br.edu.ifpb.entidades;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author laerton
  */
 @Entity
+@XmlRootElement
 public class Livro implements Serializable {
    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
    private int id;
    private String edicao;
    private String descricao;
    private String titulo;
-   private List<Autor> autores;
-   @OneToMany
-   private List<Reserva> reservas;
+   @OneToMany(cascade = CascadeType.PERSIST)
+   private List<Autor> autores = new LinkedList<>();
+   @OneToMany(cascade = CascadeType.ALL)   
+   private List<Reserva> reservas = new LinkedList<>();
 
+    public Livro() 
+    {
+        
+    }
+
+    public Livro(String edicao, String descricao, String titulo) {
+        this.edicao = edicao;
+        this.descricao = descricao;
+        this.titulo = titulo;
+    }
+
+    public void addAutor(Autor autor){
+        autores.add(autor);
+    }
+    
+    public void remAutor(Autor autor){
+        autores.remove(autor);
+    }
+    
     public int getId() {
         return id;
     }
