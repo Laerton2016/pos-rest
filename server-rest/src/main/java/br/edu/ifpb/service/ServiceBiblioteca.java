@@ -22,7 +22,6 @@ import javax.inject.Named;
  * @author laerton
  */
 @Stateless
-@Named
 public class ServiceBiblioteca {
     @Inject
     private DAOAutor daoAutor ;

@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -30,7 +28,7 @@ public class Livro implements Serializable {
    private String edicao;
    private String descricao;
    private String titulo;
-   @OneToMany(cascade = CascadeType.PERSIST)
+   @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
    private List<Autor> autores = new LinkedList<>();
    @OneToMany(cascade = CascadeType.ALL)   
    private List<Reserva> reservas = new LinkedList<>();

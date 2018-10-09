@@ -20,11 +20,11 @@ import javax.persistence.Query;
  * @author laerton
  */
 @Singleton
-@Named
-public class DAOReserva implements IDAO<Reserva>{
+//@Named
+public class DAOReserva {
 
     
-    @PersistenceContext(name = "POS_PU")
+    @PersistenceContext
     private EntityManager em ;
 
     public DAOReserva() 
@@ -33,7 +33,7 @@ public class DAOReserva implements IDAO<Reserva>{
     }
    
         
-    @Override
+    
     /***
      * Salva uma reserva
      */
@@ -48,7 +48,7 @@ public class DAOReserva implements IDAO<Reserva>{
         }
     }
 
-    @Override
+    
     public void update(Reserva obj) {
         try {
             em.getTransaction().begin();
@@ -60,7 +60,7 @@ public class DAOReserva implements IDAO<Reserva>{
         }
     }
 
-    @Override
+    
     public void remove(Reserva obj) {
         try {
             Reserva r = em.find(Reserva.class, obj.getId());
@@ -72,12 +72,12 @@ public class DAOReserva implements IDAO<Reserva>{
         }
     }
 
-    @Override
+    
     public Reserva findById(int id) {
         return em.find(Reserva.class, id);
     }
 
-    @Override
+    
     
     /***
      * Busca uma reserva pelo título/nome do livro

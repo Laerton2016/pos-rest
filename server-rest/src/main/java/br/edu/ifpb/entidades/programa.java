@@ -4,12 +4,15 @@
  * and open the template in the editor.
  */
 package br.edu.ifpb.entidades;
-import br.edu.ifpb.persistencia.DAOAutor;
 
-import java.util.List;
+import br.edu.ifpb.clientrest.ClientRest;
+import br.edu.ifpb.persistencia.DAOLivro;
+import br.edu.ifpb.persistencia.FactoryEntiteManeger;
+
+import java.io.IOException;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
+import org.eclipse.persistence.jpa.config.Entity;
 
 
 
@@ -18,7 +21,12 @@ import javax.persistence.Query;
  * @author laerton
  */
 public class programa {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        Livro l = new Livro("1", "Teste", "t");
+        Livro l2 = ClientRest.vinculaAutor(1, 1);
+        System.out.println(l2.getAutores().get(0).getNome());
+ 
+        
         
     }
 }

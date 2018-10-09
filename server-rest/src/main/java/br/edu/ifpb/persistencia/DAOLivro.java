@@ -9,8 +9,6 @@ package br.edu.ifpb.persistencia;
 import br.edu.ifpb.entidades.Livro;
 import java.util.List;
 import javax.ejb.Singleton;
-import javax.ejb.Startup;
-import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -20,20 +18,19 @@ import javax.persistence.Query;
  * @author laerton
  */
 @Singleton
-@Named
-public class DAOLivro implements IDAO<Livro>{
+//@Named
+public class DAOLivro {
 
     
-    @PersistenceContext(name = "POS_PU")
+    @PersistenceContext(unitName = "POS_PU")
     private EntityManager em;
 
-    public DAOLivro() {
+    public DAOLivro() 
+    {
+        
     }
 
     
-    
-    
-    @Override
     public void save(Livro obj) {
         try {
             em.getTransaction().begin();
@@ -44,19 +41,16 @@ public class DAOLivro implements IDAO<Livro>{
         }
     }
 
-    @Override
+    
     public void update(Livro obj) {
-        try {
-            em.getTransaction().begin();
+            
             obj = em.merge(obj);
             em.persist(obj);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-        }
+            
+        
     }
 
-    @Override
+    
     public void remove(Livro obj) {
         try {
             em.getTransaction().begin();
@@ -68,12 +62,12 @@ public class DAOLivro implements IDAO<Livro>{
         }
     }
 
-    @Override
+    
     public Livro findById(int id) {
         return em.find(Livro.class, id);
     }
 
-    @Override
+    
     public List<Livro> findByNome(String termo) {
         String Sql = "Select l from Livro l where l.titulo like :titulo order by l.titulo";
         Query q = em.createQuery(Sql, Livro.class);

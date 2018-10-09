@@ -145,7 +145,7 @@ public class ResourcesBibliotec {
      * @return - Livro com autor incluso
      */
     @GET
-    @Path("vinculaAutor/{idautor}, {idlivro}") //http://localhost:8080/dac-rest/api/integrantes/1
+    @Path("vinculaAutor/{idautor}/{idlivro}") //http://localhost:8080/dac-rest/api/integrantes/1
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Response vinculaAutorALivro(@PathParam("idlivro") int idLivro, @PathParam("idautor") int idAutor)
     {
