@@ -9,6 +9,7 @@ import br.edu.ifpb.persistencia.IDAO;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,6 +22,7 @@ import javax.inject.Inject;
  * @author laerton
  */
 @Stateless
+@Named
 public class ServiceBiblioteca {
     @Inject
     private DAOAutor daoAutor ;

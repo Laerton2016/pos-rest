@@ -11,7 +11,9 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
@@ -19,10 +21,11 @@ import javax.persistence.Query;
  * @author laerton
  */
 @Singleton
-@Startup
+@Named
 public class DAOAutor implements IDAO<Autor>{
 
-    private EntityManager em = FactoryEntiteManeger.FactoryEM();
+    @PersistenceContext(name = "POS_PU")
+    private EntityManager em;
 
     public DAOAutor() 
     {

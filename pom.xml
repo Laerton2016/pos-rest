@@ -9,7 +9,6 @@
     <artifactId>POS-Rest</artifactId>
     <packaging>pom</packaging>
   <modules>
-    <module>server-rest</module>
     <module>CoreRest</module>
   </modules>
 </project>
