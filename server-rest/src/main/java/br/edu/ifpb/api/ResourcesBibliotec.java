@@ -61,8 +61,9 @@ public class ResourcesBibliotec {
      */
     @POST
     @Path("salvarlivro")
+    @Produces("application/json")
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    @Produces({MediaType.APPLICATION_JSON})//, MediaType.APPLICATION_XML})
+    //@Produces({MediaType.APPLICATION_JSON})//, MediaType.APPLICATION_XML})
     public Response salvarLivro(Livro livro,  @Context UriInfo uriInfo){
         Livro entity = this.service.Salvar(livro);
         String id = String.valueOf(entity.getId());

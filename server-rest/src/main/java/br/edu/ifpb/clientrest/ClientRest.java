@@ -18,6 +18,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.lang.ProcessBuilder.Redirect.Type;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -93,11 +95,25 @@ public class ClientRest {
     {
         URL url = new URL(urlSetting + "salvarlivro/");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("POST");
+            // Define que a conexão pode enviar informações e obtê-las de volta:
+            connection.setDoOutput(true);
+            connection.setDoInput(true);
+            connection.setRequestProperty("Content-Type", "application/json");
             connection.setRequestProperty("Accept", "application/json");
-            if (connection.getResponseCode() !=200){
+            connection.setRequestMethod("POST");
+            connection.connect();
+            Gson g = new Gson();
+            String json = g.toJson(livro);
+            try (OutputStreamWriter outputStream = new OutputStreamWriter(connection.getOutputStream())) 
+            {
+                //outputStream.write(json.getBytes("UTF-8"));
+                outputStream.write(json);
+            }
+            if (connection.getResponseCode() !=201)
+            {
                 throw new RuntimeException("HTTP GET erro code: "+ connection.getResponseCode());
             }
+            
     }
     
     

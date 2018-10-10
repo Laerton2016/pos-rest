@@ -22,7 +22,10 @@ import org.eclipse.persistence.jpa.config.Entity;
  * @author laerton
  */
 public class programa {
-    public static void main(String[] args) throws IOException {
-        ClientRest.deleteLivro(2);
+    public static void main(String[] args) throws IOException 
+    {
+        Livro l = new Livro("3", "Novo livro", "Novo é novo.");
+        l.addAutor(new Autor("Fulano", "Fulano@teste.com.br", "FUL"));
+        ClientRest.salvarlivro(l);
     }
 }
