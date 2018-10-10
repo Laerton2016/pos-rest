@@ -28,7 +28,7 @@ public class Livro implements Serializable {
    private String edicao;
    private String descricao;
    private String titulo;
-   @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+   @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE})
    private List<Autor> autores = new LinkedList<>();
    @OneToMany(cascade = CascadeType.ALL)   
    private List<Reserva> reservas = new LinkedList<>();

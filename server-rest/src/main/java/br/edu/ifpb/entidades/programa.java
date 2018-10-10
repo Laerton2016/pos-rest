@@ -10,6 +10,7 @@ import br.edu.ifpb.persistencia.DAOLivro;
 import br.edu.ifpb.persistencia.FactoryEntiteManeger;
 
 import java.io.IOException;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import org.eclipse.persistence.jpa.config.Entity;
@@ -22,11 +23,6 @@ import org.eclipse.persistence.jpa.config.Entity;
  */
 public class programa {
     public static void main(String[] args) throws IOException {
-        Livro l = new Livro("1", "Teste", "t");
-        Livro l2 = ClientRest.vinculaAutor(1, 1);
-        System.out.println(l2.getAutores().get(0).getNome());
- 
-        
-        
+        ClientRest.deleteLivro(2);
     }
 }

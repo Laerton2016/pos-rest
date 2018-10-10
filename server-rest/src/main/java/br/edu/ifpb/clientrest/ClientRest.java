@@ -7,6 +7,7 @@ package br.edu.ifpb.clientrest;
 
 import br.edu.ifpb.entidades.Autor;
 import br.edu.ifpb.entidades.Livro;
+import static br.edu.ifpb.entidades.Livro_.id;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -78,5 +79,44 @@ public class ClientRest {
        Gson gson = new Gson();
        Livro livro =  gson.fromJson(responseBuffer,Livro.class);
        return livro;   
+    }
+    
+    public static List<Autor> findAutorByIdLivro(int id) throws IOException{
+       BufferedReader responseBuffer = getMetodo(urlSetting + "findAutorByIdLivro/"+id);
+       Gson gson = new Gson();
+       java.lang.reflect.Type usuariosListType = new TypeToken<ArrayList<Autor>>(){}.getType(); 
+       List<Autor> lista =  gson.fromJson(responseBuffer,usuariosListType);
+       return lista;   
+    }
+    
+    public static void salvarlivro(Livro livro) throws MalformedURLException, IOException
+    {
+        URL url = new URL(urlSetting + "salvarlivro/");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Accept", "application/json");
+            if (connection.getResponseCode() !=200){
+                throw new RuntimeException("HTTP GET erro code: "+ connection.getResponseCode());
+            }
+    }
+    
+    
+    public static void  deleteLivro(int id) throws MalformedURLException, IOException{
+            URL url = new URL(urlSetting + "removerlivro/"+id);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("DELETE");
+            connection.setRequestProperty("Accept", "application/json");
+            if (connection.getResponseCode() !=200){
+                throw new RuntimeException("HTTP GET erro code: "+ connection.getResponseCode());
+            }
+            BufferedReader responseBuffer = new BufferedReader(new InputStreamReader((connection.getInputStream())));
+            String s ;
+            StringBuilder sb = new StringBuilder();
+            while ((s = responseBuffer.readLine())!= null) {            {
+                sb.append(s);
+            }
+            System.err.println(sb.toString());
+            
+        }
     }
 }

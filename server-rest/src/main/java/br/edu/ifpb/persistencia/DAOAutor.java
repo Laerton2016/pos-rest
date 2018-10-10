@@ -31,37 +31,19 @@ public class DAOAutor {
 
     
     public void save(Autor obj) {
-        try {
-            em.getTransaction().begin();
             em.persist(obj);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-        }
     }
 
     
     public void update(Autor obj) {
-        try {
-            em.getTransaction().begin();
             obj = em.merge(obj);
             
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-        }
     }
 
     
     public void remove(Autor obj) {
-        try {
             Autor a = findById(obj.getId());
-            em.getTransaction().begin();
             em.remove(a);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-        }
     }
 
     

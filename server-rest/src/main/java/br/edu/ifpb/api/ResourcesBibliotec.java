@@ -4,6 +4,7 @@ import br.edu.ifpb.entidades.Autor;
 import br.edu.ifpb.entidades.Livro;
 import br.edu.ifpb.service.ServiceBiblioteca;
 import java.net.URI;
+import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -115,6 +116,8 @@ public class ResourcesBibliotec {
     public Response removerLivro (@PathParam("id")  int id)
     {
         Livro l = service.FindById(id);
+       
+       
         service.Remove(l);
         return Response.ok()
                 .build();
@@ -165,7 +168,10 @@ public class ResourcesBibliotec {
      * @param id - id do livro
      * @return - Lista de autores
      */
-    public Response findAutorByIdLivro(int id){
+    @GET
+    @Path("findAutorByIdLivro/{id}") //http://localhost:8080/dac-rest/api/integrantes/1
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public Response findAutorByIdLivro(@PathParam("id") int id){
         List<Autor> autores = service.findByAutorByidLivro(id);
         GenericEntity<List<Autor>> entity = new GenericEntity<List<Autor>>(autores) {
         };

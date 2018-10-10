@@ -32,34 +32,22 @@ public class DAOLivro {
 
     
     public void save(Livro obj) {
-        try {
-            em.getTransaction().begin();
             em.persist(obj);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-        }
+        
     }
 
     
     public void update(Livro obj) {
             
             obj = em.merge(obj);
-            em.persist(obj);
-            
         
     }
 
     
     public void remove(Livro obj) {
-        try {
-            em.getTransaction().begin();
             Livro l = findById(obj.getId());
             em.remove(l);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-        }
+     
     }
 
     
