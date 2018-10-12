@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Sistema de biblioteca</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="css/estilos.css" rel="stylesheet" type="text/css"/-->
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            
+    </h:head>
+    <h:body>
+        <nav>
+            <div class="nav-wrapper">
+              <a href="#" class="brand-logo">Bibioteca</a>
+              <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/server-rest/faces/Biblioteca.xhtml#">Livros</a></li>
+                <li><a href="/server-rest/faces/autores.xhtml#">Autores</a></li>
+                <li><a href="collapsible.html">Vinculação</a></li>
+              </ul>
+            </div>
+        </nav>
+
+        <div class="container-fluid text-center">    
+            <div class="row content">
+                
+                <div id="centro" class=" text-center"> 
+                    <ui:insert name="centro" >
+                        oi
+                    </ui:insert>
+                </div>
+                
+            </div>
+        </div>
+        
+    </h:body>
+    <footer class="container-fluid text-center">
+            <ui:insert name="rodape" >
+                <p>Site desenvolvido por Laerton </p>
+            </ui:insert>
+        </footer>
+</html>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <ui:composition template="template.xhtml">
+        <ui:define name="centro">
+    <body>
+        
+        <div class="row">
+            <h:form class="col s12 row s4">
+            
+                <div >
+                     <a>Dados do livro</a>
+                      <div class="row s1">
+                        <div class="input-field col s3">
+                            <h:inputText id="titulo"  class="validate" value="#{controladorBibliotec.livro.titulo}"/>
+                          <label for="icon_prefix">Título</label>
+                        </div>
+                        <div class="input-field col s3">
+                            <h:inputText id="descricao"  class="validate" value="#{controladorBibliotec.livro.descricao}"/>
+                          <label for="icon_telephone">Descricao</label>
+                        </div>
+                        <div class="input-field col s3">
+                            <h:inputText id="edicao"  class="validate" value="#{controladorBibliotec.livro.edicao}"/>
+                          <label for="icon_telephone">Edicao</label>
+                        </div>
+                          <h:commandButton value="Salvar" action="#{controladorBibliotec.salvarLivro()}"/>
+                        <h:commandButton value="Atualizar" action="#{controladorBibliotec.AtualizarLivro()}"/>
+                      </div>
+                      <a>Dados de autores</a>
+                      <div class="row s1">
+                          <div class="col s1">
+                              <label for="icon_telephone">Id: #{controladorBibliotec.autor.id}</label>
+                          </div>
+                          <div class="col s2">
+                              <h:inputText id="nome"  class="validate" value="#{controladorBibliotec.autor.nome}"/>
+                              <label for="icon_telephone">Nome</label>
+                          </div>
+                          <div class="col s3">
+                              <h:inputText id="Abreviacao"  class="validate" value="#{controladorBibliotec.autor.abreviacao}"/>
+                              <label for="icon_telephone">Abreviacao</label>
+                          </div>
+                          <div class="col s3">
+                              <h:inputText id="email"  class="validate" value="#{controladorBibliotec.autor.email}"/>
+                              <label for="icon_telephone">E-mail</label>
+                          </div>
+                          <h:commandButton value="Salvar" action="#{controladorBibliotec.addAutor()}"/>
+                          <h:commandButton value="Atualizar" action="#{controladorBibliotec.atualizaAutor()}"/>
+                     </div>
+                   
+                      <div class="row s1">
+                          <a>Lista de autores</a>
+                          <h:dataTable  value="#{controladorBibliotec.livro.autores}" var = "autor">
+                              <h:column>Id: #{autor.id}</h:column>
+                              <h:column>Nome: #{autor.nome}</h:column>
+                              <h:column>Abreviação: #{autor.abreviacao}</h:column>
+                              <h:column>E-mail: #{autor.email}</h:column>
+                              <h:column><h:commandButton value="Editar" action="#{controladorBibliotec.editarAutor(autor)}" /></h:column>
+                              <h:column><h:commandButton value="Excluir" action="#{controladorBibliotec.removeAutor(autor)}"/></h:column>
+                          </h:dataTable>
+                      </div>
+                      <a>Selecione um dos autores</a>
+                         <div>
+                          <h:dataTable id="autores" value="#{controladorBibliotec.todosAutores()}" var ="autor">
+                              <h:column>Id: #{autor.id}</h:column>
+                              <h:column>Nome: #{autor.nome}</h:column>
+                              <h:column>Abreviação: #{autor.abreviacao}</h:column>
+                              <h:column>E-mail: #{autor.email}</h:column>
+                              <h:column><h:commandButton value="Vincular" action="#{controladorBibliotec.vincula(autor)}" /></h:column>
+                          </h:dataTable>
+                      </div>
+                    
+                </div>
+ 
+                <div>
+                    <a>Lista de livros</a>
+                    <h:dataTable  value="#{controladorBibliotec.livros()}" var = "livro" >
+                        <h:column>Id: #{livro.id}</h:column>
+                        <h:column>Descrição: #{livro.descricao}</h:column>
+                        <h:column>Edição: #{livro.edicao}</h:column>
+                        <h:column>Livro: #{livro.titulo}</h:column>
+                        <h:column><h:commandButton value="Editar"  action="#{controladorBibliotec.editarLivro(livro)}"/></h:column>
+                        <h:column><h:commandButton value="Excluir" action="#{controladorBibliotec.removeLivro(livro)}" /></h:column>
+                    </h:dataTable>
+                </div>
+            
+        </h:form>
+        </div>
+        
+    </body>
+    </ui:define>
+        </ui:composition>
+        
+</html>

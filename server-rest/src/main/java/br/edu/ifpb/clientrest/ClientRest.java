@@ -115,7 +115,30 @@ public class ClientRest {
             }
             
     }
-    
+    public static void aualizarLivro(Livro livro) throws MalformedURLException, IOException
+    {
+        URL url = new URL(urlSetting + "atualizarlivro/");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            // Define que a conexão pode enviar informações e obtê-las de volta:
+            connection.setDoOutput(true);
+            connection.setDoInput(true);
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setRequestMethod("POST");
+            connection.connect();
+            Gson g = new Gson();
+            String json = g.toJson(livro);
+            try (OutputStreamWriter outputStream = new OutputStreamWriter(connection.getOutputStream())) 
+            {
+                //outputStream.write(json.getBytes("UTF-8"));
+                outputStream.write(json);
+            }
+            if (connection.getResponseCode() !=201)
+            {
+                throw new RuntimeException("HTTP GET erro code: "+ connection.getResponseCode());
+            }
+            
+    }
     
     public static void  deleteLivro(int id) throws MalformedURLException, IOException{
             URL url = new URL(urlSetting + "removerlivro/"+id);
@@ -135,4 +158,6 @@ public class ClientRest {
             
         }
     }
+    
+    
 }

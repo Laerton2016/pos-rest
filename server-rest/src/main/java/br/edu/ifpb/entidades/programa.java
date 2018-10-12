@@ -6,14 +6,9 @@
 package br.edu.ifpb.entidades;
 
 import br.edu.ifpb.clientrest.ClientRest;
-import br.edu.ifpb.persistencia.DAOLivro;
-import br.edu.ifpb.persistencia.FactoryEntiteManeger;
 
 import java.io.IOException;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
-import org.eclipse.persistence.jpa.config.Entity;
 
 
 
@@ -24,8 +19,9 @@ import org.eclipse.persistence.jpa.config.Entity;
 public class programa {
     public static void main(String[] args) throws IOException 
     {
-        Livro l = new Livro("3", "Novo livro", "Novo é novo.");
-        l.addAutor(new Autor("Fulano", "Fulano@teste.com.br", "FUL"));
-        ClientRest.salvarlivro(l);
+        List<Livro> livros = ClientRest.allLivros();
+        Livro l = livros.get(0);
+        l.setTitulo("Mudei o titulo");
+        ClientRest.aualizarLivro(l);
     }
 }
